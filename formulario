@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario con Factores Multiplicadores</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        div {
+            margin-bottom: 10px;
+        }
+        label {
+            display: inline-block;
+            width: 300px;
+        }
+        input {
+            width: 100px;
+        }
+        #results {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>Formulario</h2>
+    <form id="multiplicationForm">
+        <div>
+            <label for="question1">1.¿Cómo es tu negociación con los clientes y stakeholders?:</label>
+            <input type="number" id="question1" name="question1" min="0" max="10">
+        </div>
+        <div>
+            <label for="question2">2.¿Cómo es tu comunicación oral, escrita y no verbal?:</label>
+            <input type="number" id="question2" name="question2" min="0" max="10">
+        </div>
+        <div>
+            <label for="question3">3.¿Cómo es tu competencia de escucha activa?:</label>
+            <input type="number" id="question3" name="question3" min="0" max="10">
+        </div>
+        <div>
+            <label for="question4">4.¿Cómo es tu empatia en las relaciones interpersonales?:</label>
+            <input type="number" id="question4" name="question4" min="0" max="10">
+        </div>
+
+        <button type="button" onclick="calculateResults()">Calcular</button>
+    </form>
+
+    <h3>Resultados</h3>
+    <div id="results"></div>
+
+    <script>
+        function calculateResults() {
+            // Factores multiplicadores definidos
+            const factors = [1, 2, 3];
+
+            // Obtener valores de las respuestas
+            const question1 = parseFloat(document.getElementById('question1').value) || 0;
+            const question2 = parseFloat(document.getElementById('question2').value) || 0;
+            const question3 = parseFloat(document.getElementById('question3').value) || 0;
+            const question4 = parseFloat(document.getElementById('question4').value) || 0;
+
+            // Verificar que los valores estén dentro del rango permitido
+            if (question1 < 0 || question1 > 10 || question2 < 0 || question2 > 10 || question3 < 0 || question3 > 10) {
+                alert('Las respuestas deben estar entre 0 y 10.');
+                return;
+            }
+
+            // Calcular resultados
+            const result1 = question1 * factors[2];
+            const result2 = question2 * factors[2];
+            const result3 = question3 * factors[2];
+            const result4 = question4 * factors[2];
+
+            // Calcular la suma total de los resultados
+            const totalSum = result1 + result2 + result3 + result4;
+
+            // Mostrar resultados
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `
+                <p>Resultado de Pregunta 1: ${result1}</p>
+                <p>Resultado de Pregunta 2: ${result2}</p>
+                <p>Resultado de Pregunta 3: ${result3}</p>
+                <p>Resultado de Pregunta 4: ${result4}</p>
+                <p>Suma Total de Resultados: ${totalSum}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
